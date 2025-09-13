@@ -16,7 +16,7 @@ const Sockets = {}; // Store connected sockets
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://your-frontend-name.vercel.app",
+    origin: "https://chessonline-frontend.vercel.app/",
     methods: ["GET", "POST"]
   }
 });
@@ -195,4 +195,5 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
 
