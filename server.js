@@ -70,7 +70,7 @@ socket.on('capture',(piececaptured) => {
   } 
 });
 
-socket.emit('castling',(castlingobj) => {
+socket.on('castling',(castlingobj) => {
   if(currengame.hasOwnProperty(castlingobj.code)){
     if(castlingobj.mycolor == "white"){
       let oppenentID = currengame[castlingobj.code].black;
@@ -195,3 +195,4 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
