@@ -7,7 +7,7 @@ const server = http.createServer(app);
 // Custom Modules
 const {generateNum,playerColor,codes} = require('./generate');
 const {currengame,GameSession,boardsetupData} = require('./currentGame');
-const PORT = process.env || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Declaration start from here
 
@@ -195,5 +195,6 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
 
 
