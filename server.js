@@ -142,7 +142,7 @@ socket.on('createCode', (mode) => {
         }
       }
     }
-  }, 1000 * 60); 
+  }, 1000 * 60 * 2); 
 
   socket.emit('code',code);
 });
@@ -195,6 +195,7 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
 
 
 
