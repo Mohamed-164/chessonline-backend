@@ -47,13 +47,20 @@ socket.on('resign',(resignobj) => {
 });
 
 socket.on('move',(moveData) => {
+  socket.emit('pausetimer');
   if(currengame.hasOwnProperty(moveData.code)){
     if(moveData.mycolor == "white"){
       let oppenentID = currengame[moveData.code].black;
         Sockets[oppenentID].emit('move',moveData);
+        if(currengame[moveData.code].mode !== 'N'){
+          Sockets[oppenentID].emit('resumeTimer');
+        }
     }else if(moveData.mycolor == "black"){
       let oppenentID = currengame[moveData.code].white;
         Sockets[oppenentID].emit('move',moveData);
+        if(currengame[moveData.code].mode !== 'N'){
+          Sockets[oppenentID].emit('resumeTimer');
+        }
     }
   } 
 });
@@ -195,6 +202,7 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
 
 
 
