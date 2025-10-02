@@ -52,15 +52,11 @@ socket.on('move',(moveData) => {
     if(moveData.mycolor == "white"){
       let oppenentID = currengame[moveData.code].black;
         Sockets[oppenentID].emit('move',moveData);
-        if(currengame[moveData.code].mode !== 'N'){
-          Sockets[oppenentID].emit('resumeTimer');
-        }
+        Sockets[oppenentID].emit('resumeTimer');
     }else if(moveData.mycolor == "black"){
       let oppenentID = currengame[moveData.code].white;
         Sockets[oppenentID].emit('move',moveData);
-        if(currengame[moveData.code].mode !== 'N'){
-          Sockets[oppenentID].emit('resumeTimer');
-        }
+        Sockets[oppenentID].emit('resumeTimer');
     }
   } 
 });
@@ -202,6 +198,7 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
 
 
 
