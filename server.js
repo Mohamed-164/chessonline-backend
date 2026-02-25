@@ -46,6 +46,23 @@ socket.on('resign',(resignobj) => {
   }
 });
 
+  socket.on('enpassentAttack',(moveData) => {
+  socket.emit('pausetimer');
+
+  if(currengame.hasOwnProperty(moveData.code)){
+    if(moveData.mycolor == "white"){
+      let oppenentID = currengame[moveData.code].black;
+        Sockets[oppenentID].emit('enpassentAttacked',moveData);
+        Sockets[oppenentID].emit('resumeTimer');
+    }else if(moveData.mycolor == "black"){
+      let oppenentID = currengame[moveData.code].white;
+        Sockets[oppenentID].emit('enpassentAttacked',moveData);
+        Sockets[oppenentID].emit('resumeTimer');
+    }
+  } 
+
+});
+
 socket.on('move',(moveData) => {
   socket.emit('pausetimer');
   if(currengame.hasOwnProperty(moveData.code)){
@@ -198,6 +215,7 @@ socket.on('disconnect', () => {
 
 
 server.listen(PORT);
+
 
 
 
